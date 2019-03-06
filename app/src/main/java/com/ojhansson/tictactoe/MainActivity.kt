@@ -39,10 +39,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun onCellClick(view : View) {
+    fun onCellClick(view: View) {
         var selectedCell = view as Button
         var cellNo = 0
-        when(selectedCell.id) {
+        when (selectedCell.id) {
             R.id.cell0 -> cellNo = 0
             R.id.cell1 -> cellNo = 1
             R.id.cell2 -> cellNo = 2
@@ -59,14 +59,15 @@ class MainActivity : AppCompatActivity() {
 
     fun isFinished() {
         for (lines in winningLines) {
-            if(xFilledCells.containsAll(lines)) {
+            if (xFilledCells.containsAll(lines)) {
                 Toast.makeText(this, "X WON", Toast.LENGTH_LONG).show()
             }
-            if(oFilledCells.containsAll(lines)) {
+            if (oFilledCells.containsAll(lines)) {
                 Toast.makeText(this, "O WON", Toast.LENGTH_LONG).show()
             }
         }
     }
+
     fun onResetClick(view: View) {
         recreate()
     }

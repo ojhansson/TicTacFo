@@ -10,6 +10,8 @@ object WinningCombinations {
     val winningLine7 = arrayListOf(0, 4, 8)
     val winningLine8 = arrayListOf(2, 4, 6)
 
-    val winningLines = listOf<Collection<Int>>(winningLine1, winningLine2, winningLine3, winningLine4,
-                                                winningLine5, winningLine6, winningLine7, winningLine8)
+    val winningLines = listOf<Collection<Int>>(
+        winningLine1, winningLine2, winningLine3, winningLine4,
+        winningLine5, winningLine6, winningLine7, winningLine8
+    )
 }
