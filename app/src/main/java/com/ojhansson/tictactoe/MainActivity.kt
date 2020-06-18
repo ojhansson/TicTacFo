@@ -1,75 +1,117 @@
 package com.ojhansson.tictactoe
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
-import com.ojhansson.tictactoe.WinningCombinations.winningLines
-import kotlinx.android.synthetic.main.activity_main.*
+import com.ojhansson.tictactoe.fragments.MenuFragment
+
 
 class MainActivity : AppCompatActivity() {
 
-    var activePlayer = 0
-    var xFilledCells = mutableListOf<Int>()
-    var oFilledCells = mutableListOf<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        activePlayerTxt.text = "X to play"
+
+        val transaction = supportFragmentManager.beginTransaction()
+        val newFragment = MenuFragment()
+        transaction.replace(R.id.fragmentContainer, newFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
-
-    fun fillCell(selectedCell: Button, cellNo: Int) {
-        if (activePlayer == 0) {
-            selectedCell.text = "X"
-            xFilledCells.add(cellNo)
-            activePlayer = 1
-            activePlayerTxt.text = "O to play"
-
-        } else if (activePlayer == 1) {
-            selectedCell.text = "O"
-            oFilledCells.add(cellNo)
-            activePlayer = 0
-            activePlayerTxt.text = "X to play"
-        }
-
-        selectedCell.isEnabled = false
-        isFinished()
-
-    }
-
-    fun onCellClick(view: View) {
-        var selectedCell = view as Button
-        var cellNo = 0
-        when (selectedCell.id) {
-            R.id.cell0 -> cellNo = 0
-            R.id.cell1 -> cellNo = 1
-            R.id.cell2 -> cellNo = 2
-            R.id.cell3 -> cellNo = 3
-            R.id.cell4 -> cellNo = 4
-            R.id.cell5 -> cellNo = 5
-            R.id.cell6 -> cellNo = 6
-            R.id.cell7 -> cellNo = 7
-            R.id.cell8 -> cellNo = 8
-        }
-
-        fillCell(selectedCell, cellNo)
-    }
-
-    fun isFinished() {
-        for (lines in winningLines) {
-            if (xFilledCells.containsAll(lines)) {
-                Toast.makeText(this, "X WON", Toast.LENGTH_LONG).show()
-            }
-            if (oFilledCells.containsAll(lines)) {
-                Toast.makeText(this, "O WON", Toast.LENGTH_LONG).show()
-            }
-        }
-    }
-
-    fun onResetClick(view: View) {
-        recreate()
-    }
-
 }
+
+
+
+
+
+
+//        val transaction: androidx.fragment.app.FragmentTransaction = supportFragmentManager.beginTransaction()
+//        transaction.replace(R.id.fragment_container, MenuFragment())
+//        transaction.addToBackStack(null)
+//        transaction.commit()
+
+
+//    var player1 = Player("", false)
+//    var player2 = Player("", false)
+//
+//    override fun onSaveInstanceState(outState: Bundle?) {
+//        super.onSaveInstanceState(outState)
+//        outState?.putParcelable(EXTRA_PLAYER1, player1)
+//        outState?.putParcelable(EXTRA_PLAYER2, player2)
+//    }
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_start)
+//
+//
+//        cpuSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+//            if (isChecked) {
+//                player2Field.setText("TTTBot")
+//                player2.isCpu = true
+//                player2Field.isEnabled = false
+//            } else {
+//                player2Field.setText("")
+//                player2.isCpu = false
+//                player2Field.isEnabled = true
+//            }
+//
+//        }
+//    }
+//
+//    fun onPlayClick(view: View) {
+//        setPlayers()
+//        startGame()
+//    }
+//
+//    fun setPlayers() {
+//        player1.name = player1Field.text.toString()
+//        player2.name = player2Field.text.toString()
+//    }
+//
+//    fun startGame() {
+//
+//        val gameIntent = Intent(this, GameActivity::class.java).apply {
+//            putExtra(EXTRA_PLAYER1, player1)
+//            putExtra(EXTRA_PLAYER2, player2)
+//        }
+//        startActivity(gameIntent)
+//    }
+
+
+
+//    fun twoStart(view: View) {
+//        gameType = "twoPlayer"
+//        val intent = Intent(this, GameActivity::class.java).apply{
+//            putExtra(GAME_TYPE, gameType)
+//        }
+//        startActivity(intent)
+//    }
+//}
+
+
+
+
+
+//    fun showPlayersFragment() {
+//        val transaction = fragmentManager.beginTransaction()
+//        val newFragment = MenuFragment()
+//        transaction.replace(R.id.fragmentContainer, newFragment)
+//        transaction.addToBackStack(null)
+//        transaction.commit()
+//        playersFragmentLoaded = true
+//    }
+//
+//
+//    fun showTestFragment() {
+//        val transaction = fragmentManager.beginTransaction()
+//        val newFragment = TestFragment()
+//        transaction.replace(R.id.fragmentContainer, newFragment)
+//        transaction.addToBackStack(null)
+//        transaction.commit()
+//        testFragmentLoaded = true
+//        playersFragmentLoaded = false
+//    }
+
+
+
